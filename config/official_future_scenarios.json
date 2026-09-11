@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "catalog_title": "Official Austrian renewable-integration scenarios used by the thesis",
+  "boundary_dataset": {
+    "title": "Eurostat/GISCO NUTS 2024, NUTS level 2, 1:1 million, EPSG:4326",
+    "url": "https://gisco-services.ec.europa.eu/distribution/v2/nuts/geojson/NUTS_RG_01M_2024_4326_LEVL_2.geojson",
+    "local_path": "data/NUTS_RG_01M_2024_4326_LEVL_2.geojson",
+    "attribution": "© EuroGeographics bezüglich der Verwaltungsgrenzen"
+  },
+  "sources": {
+    "apg_nep_2025": {
+      "organisation": "Austrian Power Grid AG (APG)",
+      "title": "Netzentwicklungsplan 2025 für die Regelzone APG",
+      "url": "https://pb1-medien.apg.at/im/dl/apg-1687747003/APG_Netzentwicklungsplan_2025.pdf",
+      "publication_year": 2025,
+      "scenario_basis": "ENTSO-E TYNDP 2024 National Trends",
+      "tables": {
+        "wind": "Table A.4, page 154",
+        "solar": "Table A.5, page 156",
+        "run_of_river": "Table A.7, page 158",
+        "pumped_storage_turbine": "Table A.8, page 158",
+        "pumped_storage_pump": "Table A.9, page 159",
+        "batteries": "Table A.10, page 160",
+        "power_to_gas": "Table A.11, page 161",
+        "peak_load": "Table A.12, page 162"
+      }
+    },
+    "eag": {
+      "organisation": "Republik Österreich",
+      "title": "Erneuerbaren-Ausbau-Gesetz (EAG), consolidated version",
+      "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20011619",
+      "note": "The statutory 2030 increment relative to 2020 is 27 TWh: 11 TWh PV, 10 TWh wind, 5 TWh hydropower and 1 TWh biomass."
+    },
+    "jrc_transmission_costs": {
+      "organisation": "European Commission Joint Research Centre (JRC)",
+      "title": "An assessment of asset and infrastructure costs for electricity transmission",
+      "url": "https://ses.jrc.ec.europa.eu/sites/default/files/publications/reqno_jrc67875_pesgm2012-000417.pdf.pdf",
+      "publication_year": 2012,
+      "note": "Table I reports 400--700 kEUR/km for a 1,500 MVA 400-kV HVAC overhead single circuit and terrain surcharges of 20 or 50 percent."
+    },
+    "entsoe_cba_annuity": {
+      "organisation": "ENTSO-E",
+      "title": "Guideline for Cost Benefit Analysis of Grid Development Projects, version 2.0",
+      "url": "https://eepublicdownloads.entsoe.eu/clean-documents/tyndp-documents/Cost%20Benefit%20Analysis/160729_CBA%202%200_draft%20for%20ACER%20opinion.pdf?Web=1",
+      "note": "A real discount rate of 4 percent and a 40-year transmission-asset life are used for the transparent annuity convention."
+    }
+  },
+  "reinforcement_cost_assumption": {
+    "currency_basis": "Source-price euros; no inflation adjustment is claimed.",
+    "jrc_midpoint_kEUR_per_km": 550,
+    "terrain_factor": 1.2,
+    "reference_rating_mva": 1500,
+    "real_discount_rate": 0.04,
+    "economic_lifetime_years": 40,
+    "annualized_eur_per_mw_km_year": 22.22,
+    "interpretation": "A transparent sensitivity midpoint for reinforcing an existing corridor; not a project quotation or Austrian tariff forecast."
+  },
+  "projection_visualisation": {
+    "reference_2024": {
+      "label": "APG stock / peak-load reference 2024",
+      "source_id": "apg_nep_2025",
+      "declared_national_mw": {
+        "onwind": 4092,
+        "solar": 8360,
+        "peak_load": 11134
+      },
+      "regional_peak_load_mw": {
+        "AT11": 191,
+        "AT12": 1804,
+        "AT13": 2279,
+        "AT21": 873,
+        "AT22": 1729,
+        "AT31": 1632,
+        "AT32": 882,
+        "AT33": 1030,
+        "AT34": 714
+      },
+      "renewable_regionalisation": "APG publishes national 2024 wind/PV stock values but no NUTS-2 split in Tables A.4 and A.5. For visualisation only, each national stock value is allocated with the corresponding APG National Trends 2030 regional shares."
+    },
+    "derived_2035": {
+      "label": "Interpolated 2035 inputs",
+      "method": "Arithmetic midpoint of every APG National Trends 2030 and 2040 NUTS-2 wind, PV and peak-load table entry.",
+      "interpretation": "A transparent interpolation for visualisation only; not a published APG/ENTSO-E scenario and not a separately simulated policy outcome."
+    }
+  },
+  "scenarios": {
+    "historical": {
+      "label": "Historical input without future scaling",
+      "target_year": null,
+      "source_ids": [],
+      "identity": true
+    },
+    "apg_tyndp_nt_2030": {
+      "label": "APG / ENTSO-E TYNDP 2024 National Trends 2030",
+      "target_year": 2030,
+      "source_ids": ["apg_nep_2025"],
+      "policy_context_source_ids": ["eag"],
+      "regional_targets_mw": {
+        "onwind": {
+          "AT11": 2844,
+          "AT12": 4268,
+          "AT13": 75,
+          "AT21": 420,
+          "AT22": 1094,
+          "AT31": 297,
+          "AT32": 0,
+          "AT33": 2,
+          "AT34": 0
+        },
+        "solar": {
+          "AT11": 2030,
+          "AT12": 2640,
+          "AT13": 852,
+          "AT21": 1056,
+          "AT22": 2000,
+          "AT31": 2095,
+          "AT32": 321,
+          "AT33": 762,
+          "AT34": 244
+        },
+        "peak_load": {
+          "AT11": 274,
+          "AT12": 2589,
+          "AT13": 3270,
+          "AT21": 1253,
+          "AT22": 2480,
+          "AT31": 2341,
+          "AT32": 1265,
+          "AT33": 1479,
+          "AT34": 1025
+        }
+      },
+      "declared_national_targets_mw": {
+        "onwind": 9000,
+        "solar": 12000,
+        "peak_load": 15976
+      }
+    },
+    "apg_tyndp_nt_2035_midpoint": {
+      "label": "Interpolated APG / ENTSO-E National Trends inputs for 2035",
+      "target_year": 2035,
+      "source_ids": ["apg_nep_2025"],
+      "policy_context_source_ids": ["eag"],
+      "official_status": "derived_interpolation_not_published_scenario",
+      "derivation": "Arithmetic midpoint of every regional APG National Trends 2030 and 2040 wind, photovoltaic, and peak-load table entry.",
+      "regional_targets_mw": {
+        "onwind": {
+          "AT11": 3133.5,
+          "AT12": 5373,
+          "AT13": 82.5,
+          "AT21": 900.5,
+          "AT22": 2300.5,
+          "AT31": 577,
+          "AT32": 65,
+          "AT33": 50.5,
+          "AT34": 18
+        },
+        "solar": {
+          "AT11": 2435.5,
+          "AT12": 5204,
+          "AT13": 1263.5,
+          "AT21": 1811.5,
+          "AT22": 3377.5,
+          "AT31": 3772,
+          "AT32": 1041.5,
+          "AT33": 1550.5,
+          "AT34": 544.5
+        },
+        "peak_load": {
+          "AT11": 379,
+          "AT12": 3584,
+          "AT13": 4606.5,
+          "AT21": 1734.5,
+          "AT22": 3360,
+          "AT31": 3136,
+          "AT32": 1751,
+          "AT33": 2047,
+          "AT34": 1419
+        }
+      },
+      "declared_national_targets_mw": {
+        "onwind": 12500,
+        "solar": 21000,
+        "peak_load": 22017.5
+      }
+    },
+    "apg_tyndp_nt_2040": {
+      "label": "APG / ENTSO-E TYNDP 2024 National Trends 2040",
+      "target_year": 2040,
+      "source_ids": ["apg_nep_2025"],
+      "policy_context_source_ids": ["eag"],
+      "regional_targets_mw": {
+        "onwind": {
+          "AT11": 3423,
+          "AT12": 6478,
+          "AT13": 90,
+          "AT21": 1381,
+          "AT22": 3507,
+          "AT31": 857,
+          "AT32": 130,
+          "AT33": 99,
+          "AT34": 36
+        },
+        "solar": {
+          "AT11": 2841,
+          "AT12": 7768,
+          "AT13": 1675,
+          "AT21": 2567,
+          "AT22": 4755,
+          "AT31": 5449,
+          "AT32": 1762,
+          "AT33": 2339,
+          "AT34": 845
+        },
+        "peak_load": {
+          "AT11": 484,
+          "AT12": 4579,
+          "AT13": 5943,
+          "AT21": 2216,
+          "AT22": 4240,
+          "AT31": 3931,
+          "AT32": 2237,
+          "AT33": 2615,
+          "AT34": 1813
+        }
+      },
+      "declared_national_targets_mw": {
+        "onwind": 16000,
+        "solar": 30000,
+        "peak_load": 28059
+      }
+    }
+  }
+}

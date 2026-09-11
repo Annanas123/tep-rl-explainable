@@ -1,0 +1,40 @@
+# Local environments and editor settings
+.venv/
+.venv_pypsa1_check/
+.idea/
+.vscode/
+.ipynb_checkpoints/
+__pycache__/
+*.py[cod]
+
+# Generated outputs
+results/
+plots/
+tmp/
+tep_outputs/
+_latex_check/
+*.log
+*.pkl
+hs_err_pid*.log
+
+# Local tooling and archived work
+.tools/
+tools/
+revisions/
+notebooks/
+pypsa-eur/
+scripts/final/
+scripts/future_scenario_projection.py
+scripts/rerun_silver_from_results.py
+FUTURE_REINFORCEMENT_RUN.md
+
+# Non-canonical source and intermediate data
+/*.csv
+/*.nc
+/data/*
+!/data/entsoe_at_load_2015_2024_opsd.csv
+!/data/wind_at_2015_2024.csv
+!/data/solar_at_2015_2024.csv
+!/data/NUTS_RG_01M_2024_4326_LEVL_2.geojson
+/derived/*
+!/derived/austria_net_physical_ratings.nc
